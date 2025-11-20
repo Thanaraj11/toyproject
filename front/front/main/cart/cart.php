@@ -601,7 +601,7 @@ a:focus {
   </style>
 </head>
 <body>
-  <?php include '../header1.php'; ?>
+
 
   <main class="container">
     <?php if ($message === 'added'): ?>
@@ -793,6 +793,6 @@ a:focus {
     <?php endif; ?>
   </main>
 
-  <?php include '../footer.php'; ?>
+  
 </body>
 </html>

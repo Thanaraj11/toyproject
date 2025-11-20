@@ -507,7 +507,7 @@ a:focus {
   </style>
 </head>
 <body>
-  <?php include '../../header1.php'; ?>
+  
 
   <main class="container">
     <nav aria-label="Breadcrumb" class="breadcrumb">
@@ -663,7 +663,7 @@ a:focus {
     </div>
   </main>
 
-  <?php include '../../footer.php'; ?>
+ 
 
   <script>
     // Handle same as shipping checkbox

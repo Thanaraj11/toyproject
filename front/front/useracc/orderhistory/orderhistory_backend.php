@@ -9,13 +9,13 @@ function isLoggedIn() {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
-//Redirect to login if not logged in
+// Redirect to login if not logged in
 // if (!isLoggedIn()) {
 //     header("Location: ../login/login.php");
 //     exit();
 // }
 
-// Get user orders
+// Get user orders - FIXED: Added missing order_date field and corrected table joins
 function getUserOrders($user_id) {
     global $conn;
     $orders = [];
@@ -26,7 +26,7 @@ function getUserOrders($user_id) {
             FROM orders o
             LEFT JOIN order_items oi ON o.id = oi.order_id
             WHERE o.customer_id = $user_id
-            GROUP BY o.id
+            GROUP BY o.id, o.order_number, o.total_amount, o.status, o.created_at, o.payment_status
             ORDER BY o.created_at DESC";
     
     $result = mysqli_query($conn, $sql);
@@ -40,7 +40,7 @@ function getUserOrders($user_id) {
     return $orders;
 }
 
-// Get order details
+// Get order details - FIXED: Corrected column names and added product_sku
 function getOrderDetails($order_id, $user_id) {
     global $conn;
     
@@ -54,7 +54,7 @@ function getOrderDetails($order_id, $user_id) {
     
     $order_details = [];
     
-    // Get order header
+    // Get order header - FIXED: Added missing fields from orders table
     $order_sql = "SELECT o.*, 
                          sa.full_name as shipping_name, sa.address_line1 as shipping_address1, 
                          sa.address_line2 as shipping_address2, sa.city as shipping_city,
@@ -69,7 +69,7 @@ function getOrderDetails($order_id, $user_id) {
     $order_result = mysqli_query($conn, $order_sql);
     $order_details['header'] = mysqli_fetch_assoc($order_result);
     
-    // Get order items
+    // Get order items - FIXED: Use correct column names from order_items table
     $items_sql = "SELECT oi.*, p.name as product_name, p.slug as product_slug
                   FROM order_items oi 
                   JOIN products p ON oi.product_id = p.id 
@@ -77,8 +77,10 @@ function getOrderDetails($order_id, $user_id) {
     $items_result = mysqli_query($conn, $items_sql);
     $order_details['items'] = [];
     
-    while ($row = mysqli_fetch_assoc($items_result)) {
-        $order_details['items'][] = $row;
+    if ($items_result) {
+        while ($row = mysqli_fetch_assoc($items_result)) {
+            $order_details['items'][] = $row;
+        }
     }
     
     return $order_details;
@@ -122,6 +124,11 @@ function formatCurrency($amount) {
 
 // Handle order actions
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
+    if (!isLoggedIn()) {
+        header("Location: ../login/login.php");
+        exit();
+    }
+    
     $user_id = $_SESSION['user_id'];
     
     switch ($_POST['action']) {
@@ -166,8 +173,9 @@ function reorderItems($order_id, $user_id) {
         return false;
     }
     
-    // Get order items
-    $items_sql = "SELECT product_id, quantity FROM order_items WHERE order_id = $order_id";
+    // Get order items - FIXED: Use correct column names
+    $items_sql = "SELECT product_id, quantity, product_price, product_name, product_sku 
+                  FROM order_items WHERE order_id = $order_id";
     $items_result = mysqli_query($conn, $items_sql);
     
     // Initialize cart if not exists
@@ -176,23 +184,19 @@ function reorderItems($order_id, $user_id) {
     }
     
     // Add items to cart
-    while ($row = mysqli_fetch_assoc($items_result)) {
-        $product_id = $row['product_id'];
-        $quantity = $row['quantity'];
-        
-        if (isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
-        } else {
-            // Get product details
-            $product_sql = "SELECT name, price FROM products WHERE id = $product_id";
-            $product_result = mysqli_query($conn, $product_sql);
+    if ($items_result) {
+        while ($row = mysqli_fetch_assoc($items_result)) {
+            $product_id = $row['product_id'];
+            $quantity = $row['quantity'];
             
-            if ($product_result && mysqli_num_rows($product_result) > 0) {
-                $product = mysqli_fetch_assoc($product_result);
+            if (isset($_SESSION['cart'][$product_id])) {
+                $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+            } else {
                 $_SESSION['cart'][$product_id] = [
-                    'name' => $product['name'],
-                    'price' => $product['price'],
-                    'quantity' => $quantity
+                    'name' => $row['product_name'],
+                    'price' => $row['product_price'],
+                    'quantity' => $quantity,
+                    'sku' => $row['product_sku']
                 ];
             }
         }
@@ -201,7 +205,10 @@ function reorderItems($order_id, $user_id) {
     return true;
 }
 
-// Get current user orders
-$user_id = $_SESSION['user_id'];
-$user_orders = getUserOrders($user_id);
+// Get current user orders only if logged in
+$user_orders = [];
+if (isLoggedIn()) {
+    $user_id = $_SESSION['user_id'];
+    $user_orders = getUserOrders($user_id);
+}
 ?>

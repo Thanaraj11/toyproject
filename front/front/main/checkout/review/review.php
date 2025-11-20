@@ -421,7 +421,7 @@ a:focus {
   </style>
 </head>
 <body>
-  <?php include '../../header1.php'; ?>
+  
 
   <main class="container">
     <nav aria-label="Breadcrumb" class="breadcrumb">
@@ -512,6 +512,6 @@ a:focus {
     </section>
   </main>
 
-  <?php include '../../footer.php'; ?>
+
 </body>
 </html>

@@ -5,6 +5,9 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION[
     header("Location: ../../useracc/login/login.php");
     exit();
 }
+
+// Include order history functions - MOVED TO TOP so functions are available
+include 'orderhistory_backend.php';
 ?>
 
 <!doctype html>
@@ -452,10 +455,8 @@ tbody tr:nth-child(5) { animation-delay: 0.5s; }
       <h2>Past Orders</h2>
       
       <?php
-      // Include order history functions
-      include 'orderhistory_backend.php';
-      
-      if (empty($user_orders)): 
+      // Check if user_orders is set and not empty
+      if (!isset($user_orders) || empty($user_orders)): 
       ?>
         <div class="no-orders">
           <p>You haven't placed any orders yet.</p>
@@ -520,5 +521,19 @@ tbody tr:nth-child(5) { animation-delay: 0.5s; }
       <?php endif; ?>
     </section>
   </main>
+
+  <script>
+    // Add confirmation for cancel actions
+    document.addEventListener('DOMContentLoaded', function() {
+      const cancelForms = document.querySelectorAll('form[action="cancel_order"]');
+      cancelForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+          if (!confirm('Are you sure you want to cancel this order?')) {
+            e.preventDefault();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
