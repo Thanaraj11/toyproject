@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Subscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="newsletter.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-newspaper"></i>
+                NewsDaily
+            </div>
+            <p class="tagline">Stay updated with the latest news, trends, and insights from around the world.</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="illustration">
+                <div class="illustration-content">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h2>Why Subscribe?</h2>
+                    <p>Join our community of informed readers who receive curated content directly in their inbox.</p>
+                    
+                    <ul class="benefits">
+                        <li><i class="fas fa-check-circle"></i> Weekly updates on topics you care about</li>
+                        <li><i class="fas fa-check-circle"></i> Exclusive content not available elsewhere</li>
+                        <li><i class="fas fa-check-circle"></i> No spam, unsubscribe anytime</li>
+                        <li><i class="fas fa-check-circle"></i> Special offers for subscribers only</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="subscription">
+                <h2>Subscribe to our Newsletter</h2>
+                <p>Enter your details below to get started</p>
+                
+                <form id="subscription-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interests">Interests (optional)</label>
+                        <select id="interests" class="form-control">
+                            <option value="">Select your interests</option>
+                            <option value="technology">Technology</option>
+                            <option value="business">Business</option>
+                            <option value="health">Health & Wellness</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="subscribe-btn">Subscribe Now</button>
+                </form>
+                
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="social-btn google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="success-message" id="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h2>Thank You for Subscribing!</h2>
+            <p>We've sent a confirmation email to your inbox. Please check your email to verify your subscription.</p>
+            <button id="return-btn">Return to Website</button>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 NewsDaily. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Us</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script src="newsletter.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* CSS Variables for consistent theming */
+    /* :root {
+      --primary-color: #4a6de5;
+      --primary-dark: #3a59c7;
+      --secondary-color: #f8f9fa;
+      --text-color: #333;
+      --text-light: #6c757d;
+      --border-color: #dee2e6;
+      --success-color: #28a745;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
+    } */
+    
+    /* Base Styles */
+    /* * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      padding: 0;
+      margin: 0;
+    } */
+    
+    /* Header Styles */
+    /* header {
+      background-color: white;
+      box-shadow: var(--shadow);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    nav a:hover {
+      color: var(--primary-color);
+    } */
+    
+    /* Main Content */
+    /* main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    } */
+    
+    /* Form Styles */
+    /* #shipping-form {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+    
+    #shipping-form section {
+      margin-bottom: 2rem;
+    }
+    
+    #shipping-form h2 {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    } */
+    
+    /* Form Labels and Inputs */
+    /* label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      transition: var(--transition);
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(74, 109, 229, 0.1);
+    }
+     */
+    /* Radio Button Styles */
+    /* input[type="radio"] {
+      margin-right: 0.5rem;
+      accent-color: var(--primary-color);
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    .radio-option:hover {
+      border-color: var(--primary-color);
+      background-color: rgba(74, 109, 229, 0.05);
+    }
+    
+    .radio-option label {
+      margin: 0;
+      cursor: pointer;
+      flex-grow: 1;
+    } */
+    
+    /* Button Styles */
+    /* button[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      width: 100%;
+      transition: var(--transition);
+    }
+    
+    button[type="submit"]:hover {
+      background-color: var(--primary-dark);
+    }
+     */
+    /* Form Layout */
+    /* .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .form-group {
+      flex: 1;
+    } */
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      header h1 {
+        margin-bottom: 0.5rem;
+      }
+      
+      nav {
+        justify-content: center;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      #shipping-form {
+        padding: 1.5rem;
+      }
+    }

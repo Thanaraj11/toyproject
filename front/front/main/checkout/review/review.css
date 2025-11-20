@@ -1,0 +1,205 @@
+/* CSS Variables for consistent theming */
+    /* :root {
+      --primary-color: #4a6de5;
+      --primary-dark: #3a59c7;
+      --secondary-color: #f8f9fa;
+      --text-color: #333;
+      --text-light: #6c757d;
+      --border-color: #dee2e6;
+      --success-color: #28a745;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --border-radius: 8px;
+    }
+     */
+    /* Base Styles */
+    /* * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    } */
+    
+    /* body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f5f7fa;
+      padding: 0;
+      margin: 0;
+    } */
+    
+    /* Header Styles */
+    /* header {
+      background-color: white;
+      box-shadow: var(--shadow);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    nav a:hover {
+      color: var(--primary-color);
+    } */
+    
+    /* Main Content */
+    /* main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    } */
+    
+    /* Order Summary Section */
+    /* #order-summary {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    #order-summary h2 {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    } */
+    
+    /* Table Styles */
+    /* table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+    
+    thead {
+      background-color: var(--secondary-color);
+    }
+    
+    th, td {
+      padding: 1rem;
+      text-align: left;
+    }
+    
+    th {
+      font-weight: 600;
+      border-bottom: 2px solid var(--border-color);
+    }
+    
+    tr {
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    tr:last-child {
+      border-bottom: none;
+    }
+     */
+    /* Summary Details */
+    #summary-subtotal, #shipping-method, #order-total {
+      padding: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    
+    #order-total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--border-color);
+    }
+    
+    /* Button Styles */
+    /* #confirm-order {
+      background-color: var(--success-color);
+      color: black;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      margin-top: 1.5rem;
+      width: 100%;
+      transition: background-color 0.2s;
+    }
+    
+    #confirm-order:hover {
+      background-color: #218838;
+    } */
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      header h1 {
+        margin-bottom: 0.5rem;
+      }
+      
+      nav {
+        justify-content: center;
+      }
+      
+      table {
+        font-size: 0.9rem;
+      }
+      
+      th, td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      #order-summary {
+        padding: 1.5rem;
+      }
+      
+      thead {
+        display: none;
+      }
+      
+      tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 0.5rem;
+      }
+      
+      td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem;
+        position: relative;
+      }
+      
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.5rem;
+        font-weight: bold;
+        text-align: left;
+      }
+    }

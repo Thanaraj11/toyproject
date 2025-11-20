@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="result.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-search"></i> SearchMaster
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search for anything...">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-user"></i> Sign In</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="filters">
+            <div class="filter-group">
+                <label>Sort by:</label>
+                <select class="filter-select">
+                    <option>Relevance</option>
+                    <option>Newest</option>
+                    <option>Oldest</option>
+                    <option>Most Popular</option>
+                </select>
+                
+                <label>Category:</label>
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Technology</option>
+                    <option>Science</option>
+                    <option>Business</option>
+                    <option>Health</option>
+                </select>
+            </div>
+            
+            <div class="view-options">
+                <button class="view-option active"><i class="fas fa-th"></i></button>
+                <button class="view-option"><i class="fas fa-list"></i></button>
+            </div>
+        </div>
+        
+        <div class="results-count">
+            About 2,340,000 results (0.45 seconds)
+        </div>
+        
+        <div class="results-grid">
+            <!-- Result 1 -->
+            <div class="result-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Web Development">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Advanced Web Development Techniques for 2023</h3>
+                    <p class="card-description">Learn the latest web development frameworks and tools that are shaping the future of web applications.</p>
+                    <div class="card-meta">
+                        <span>www.webdev.com</span>
+                        <span>2 days ago</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Result 2 -->
+            <div class="result-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Search Algorithms">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">How Search Algorithms Work: A Comprehensive Guide</h3>
+                    <p class="card-description">Understanding the complex algorithms that power modern search engines and how they rank results.</p>
+                    <div class="card-meta">
+                        <span>www.techinsights.org</span>
+                        <span>1 week ago</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Result 3 -->
+            <div class="result-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Data Analytics">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Data Analytics for Search Optimization</h3>
+                    <p class="card-description">How to leverage data analytics to improve search functionality and user experience on your website.</p>
+                    <div class="card-meta">
+                        <span>www.datainsights.com</span>
+                        <span>3 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Result 4 -->
+            <div class="result-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="UI Design">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Designing Effective Search Interfaces</h3>
+                    <p class="card-description">Best practices for creating user-friendly search interfaces that deliver great user experiences.</p>
+                    <div class="card-meta">
+                        <span>www.uidesign.net</span>
+                        <span>1 month ago</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Result 5 -->
+            <div class="result-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Artificial Intelligence in Search Technology</h3>
+                    <p class="card-description">How AI and machine learning are revolutionizing search capabilities and delivering more accurate results.</p>
+                    <div class="card-meta">
+                        <span>www.aitech.com</span>
+                        <span>2 months ago</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Result 6 -->
+            <div class="result-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="SEO">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">SEO Strategies for Modern Search Engines</h3>
+                    <p class="card-description">Updated SEO techniques to improve your website's visibility in search engine results pages.</p>
+                    <div class="card-meta">
+                        <span>www.seoexperts.org</span>
+                        <span>4 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <button class="pagination-button"><i class="fas fa-chevron-left"></i></button>
+            <button class="pagination-button active">1</button>
+            <button class="pagination-button">2</button>
+            <button class="pagination-button">3</button>
+            <button class="pagination-button">4</button>
+            <button class="pagination-button">5</button>
+            <button class="pagination-button"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About SearchMaster</h3>
+                    <p>SearchMaster is a powerful search engine designed to help you find the most relevant information on the web.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../../front/main/index/index.html">Home</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="../../front/informationalpages/termsprivacy/termsprivacy.html">Terms of Service</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#">support@searchmaster.com</a></li>
+                        <li><a href="#">+1 (555) 123-4567</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 SearchMaster. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+   <script src="result.js"></script>
+</body>
+</html>

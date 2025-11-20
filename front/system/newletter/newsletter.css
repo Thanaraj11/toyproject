@@ -1,0 +1,353 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 15px;
+            color: #ffd166;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Illustration Section */
+        .illustration {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(135deg, #ffd166 0%, #06d6a0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: white;
+        }
+        
+        .illustration-content {
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .illustration i {
+            font-size: 150px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .illustration h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .illustration p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .benefits {
+            text-align: left;
+            margin-top: 30px;
+        }
+        
+        .benefits li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits i {
+            font-size: 20px;
+            margin-right: 15px;
+            color: #073b4c;
+        }
+        
+        /* Subscription Form */
+        .subscription {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .subscription h2 {
+            font-size: 28px;
+            color: #073b4c;
+            margin-bottom: 10px;
+        }
+        
+        .subscription > p {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #073b4c;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .checkbox-group input {
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-group label {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .checkbox-group a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .subscribe-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #64748b;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .social-btn i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        .social-btn.google i {
+            color: #DB4437;
+        }
+        
+        .social-btn.facebook i {
+            color: #4267B2;
+        }
+        
+        .social-btn:hover {
+            background: #f8fafc;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .success-message i {
+            font-size: 80px;
+            color: #06d6a0;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h2 {
+            font-size: 32px;
+            color: #073b4c;
+            margin-bottom: 20px;
+        }
+        
+        .success-message p {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .success-message button {
+            background: #073b4c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .success-message button:hover {
+            background: #055272;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .illustration, .subscription {
+                width: 100%;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+            
+            .logo {
+                font-size: 28px;
+            }
+            
+            .illustration i {
+                font-size: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .subscription {
+                padding: 25px;
+            }
+            
+            .illustration {
+                padding: 25px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .illustration i {
+                font-size: 80px;
+            }
+        }

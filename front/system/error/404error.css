@@ -1,0 +1,151 @@
+ /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 404 text */
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: #ff6b6b;
+            text-shadow: 3px 3px 0 #ffd166, 
+                         6px 6px 0 #06d6a0;
+            margin-bottom: 20px;
+            line-height: 1;
+            transform: rotate(-5deg);
+            animation: bounce 2s infinite alternate;
+        }
+        
+        /* Error message */
+        .error-message {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        /* Description */
+        .error-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Home button */
+        .home-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #118ab2;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(17, 138, 178, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .home-button:hover {
+            background: #0a6c8f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17, 138, 178, 0.4);
+        }
+        
+        /* Decorative elements */
+        .decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #ffd166;
+            top: -50px;
+            right: -50px;
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 173px solid #06d6a0;
+            bottom: -80px;
+            left: -50px;
+            transform: rotate(30deg);
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Animation for 404 text */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            100% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-message {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 4rem;
+                text-shadow: 2px 2px 0 #ffd166, 
+                             4px 4px 0 #06d6a0;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+            }
+            
+            .error-description {
+                font-size: 1rem;
+            }
+        }
