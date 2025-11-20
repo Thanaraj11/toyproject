@@ -2,12 +2,11 @@
 // Include database connection
 include '../../../databse/db_connection.php';
 
-session_start();
-// login.php
-// if (isset($_SESSION['user_id'])) {
-//     header("Location: ../../main/index/inde.php");
-//     exit;
-// }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 
 function validateLogin($email, $password) {
     global $conn;

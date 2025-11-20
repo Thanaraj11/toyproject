@@ -2,7 +2,10 @@
 // Include database connection
 include '../../../databse/db_connection.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // Check if user is logged in
 function isLoggedIn() {

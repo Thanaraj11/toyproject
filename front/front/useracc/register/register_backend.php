@@ -2,7 +2,10 @@
 // Include database connection
 include '../../../databse/db_connection.php'; // Fixed typo
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 function validateRegistrationData($user_data) {
     $errors = [];

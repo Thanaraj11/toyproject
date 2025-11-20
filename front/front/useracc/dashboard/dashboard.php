@@ -1,6 +1,9 @@
 <?php
 // useracc/dashboard/dashboard.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../../useracc/login/login.php");
     exit();
@@ -457,17 +460,12 @@ main {
 </head>
 <body>
   <header>
-    <h1>User Dashboard</h1>
-    
-    <nav>
-      <a href="../../main/index/index.php">Home</a>
-      <a href="../../main/cart/cart.php">Cart</a>
-      <a href="?logout=1" id="logout">Logout</a>
-      <a href="../orderhistory/orderhistory.php">Order History</a>
-      <a href="../adress/adress.php">Address Book</a>
-      <a href="../wishlist/wishlist.php">Wishlist</a>
-    </nav>
-  </header>
+    <div>
+        <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+        <p>Overview of your account activity</p>
+    </div>
+    <?php include '../header3.php'; ?>
+</header>
 
   <main>
     <?php include 'dashboard_backend.php'; ?>

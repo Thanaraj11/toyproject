@@ -1,6 +1,9 @@
 <?php
 // useracc/whishlist/wishlist.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../../useracc/login/login.php");
     exit();
@@ -11,7 +14,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION[
 // Include database connection
 include '../../../databse/db_connection.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // Check if user is logged in
 function isLoggedIn() {
@@ -626,15 +632,7 @@ header h1 i {
       <h1><i class="fas fa-heart"></i> My Wishlist</h1>
       <p>Your favorite items all in one place</p>
     </div>
-    <nav>
-      <a href="../../main/index/index.php">Home</a>
-      <a href="../../main/cart/cart.php">Cart</a>
-      <a href="../dashboard/dashboard.php">Dashboard</a>
-      <a href="?logout=1" id="logout">Logout</a>
-      <a href="../orderhistory/orderhistory.php">Order History</a>
-      <a href="../adress/adress.php">Address Book</a>
-      <a href="../wishlist/wishlist.php">Wishlist</a>
-    </nav>
+    <?php include '../header3.php'; ?>
   </header>
 
   <main>

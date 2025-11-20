@@ -1,6 +1,9 @@
 <?php
 // useracc/orderhistory/orderhistory.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../../useracc/login/login.php");
     exit();
@@ -437,7 +440,7 @@ tbody tr:nth-child(5) { animation-delay: 0.5s; }
   </style>
 </head>
 <body>
-  <header>
+  <!-- <header>
     <h1>My Orders</h1>
     <nav>
       <a href="../../main/index/index.php">Home</a>
@@ -448,7 +451,14 @@ tbody tr:nth-child(5) { animation-delay: 0.5s; }
       <a href="../adress/adress.php">Address Book</a>
       <a href="../wishlist/wishlist.php">Wishlist</a>
     </nav>
-  </header>
+  </header> -->
+  <header>
+    <div>
+        <h1><i class="fas fa-history"></i> Order History</h1>
+        <p>View your past orders and track current ones</p>
+    </div>
+    <?php include '../header3.php'; ?>
+</header>
 
   <main>
     <section id="orders-list">

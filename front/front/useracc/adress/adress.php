@@ -1,6 +1,9 @@
 <?php
 // useracc/address/address.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../../useracc/login/login.php");
     exit();
@@ -371,13 +374,12 @@ main {
 </head>
 <body>
   <header>
-    <h1>Saved Addresses</h1>
-    <nav>
-      <a href="../dashboard/dashboard.php">Dashboard</a>
-      <a href="../../main/index/index.php">Home</a>
-    </nav>
-  </header>
-
+    <div>
+        <h1><i class="fas fa-map-marker-alt"></i> My Addresses</h1>
+        <p>Manage your delivery addresses</p>
+    </div>
+    <?php include '../header3.php'; ?>
+</header>
   <main>
     <?php
     // Include address functions - fix the filename

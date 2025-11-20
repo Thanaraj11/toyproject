@@ -1,6 +1,9 @@
 <?php
 // Start session and include database connection
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once '../../../../databse/db_connection.php';
 
 function validatePaymentData($payment_data) {

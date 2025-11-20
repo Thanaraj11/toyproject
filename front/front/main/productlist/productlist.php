@@ -4,7 +4,10 @@ include '../../../databse/db_connection.php';
 include 'productlist_backend.php';
 
 // Start session for wishlist functionality
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // Initialize variables
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;

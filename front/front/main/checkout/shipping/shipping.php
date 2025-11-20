@@ -1,6 +1,9 @@
 <?php
 // main/checkout/shipping/shipping.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../../../useracc/login/login.php");
     exit();
@@ -9,7 +12,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']) || $_SESSION[
 
 <?php
 // Start session and include database connection
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once '../../../../databse/db_connection.php';
 
 // Include shipping functions

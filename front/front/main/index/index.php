@@ -45,7 +45,10 @@ $productImages = getProductImages($conn);
 
 <?php
 // wishlist_backend.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // Function to add item to wishlist
 function addToWishlist($customer_id, $product_id, $conn) {

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once '../../../databse/db_connection.php';
 
 // Include profile functions
@@ -552,7 +555,13 @@ unset($_SESSION['profile_error']);
     </style>
 </head>
 <body>
+    <header>
+    <div>
+        <h1><i class="fas fa-user-circle"></i> My Profile</h1>
+        <p>Manage your personal information</p>
+    </div>
     <?php include '../header3.php'; ?>
+</header>
 
     <main class="container">
         <div class="profile-header">

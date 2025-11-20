@@ -256,7 +256,7 @@ header {
 </head>
 <body>
     <header>
-    <h1>User Dashboard</h1>
+    
     
     <nav>
       <a href="../../main/index/index.php">Home</a>
