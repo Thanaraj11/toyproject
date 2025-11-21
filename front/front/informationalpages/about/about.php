@@ -15,7 +15,7 @@
 <body>
     
                 <!-- <iframe src="../header1.html" width="100%" height="300px"></iframe> -->
-  <head><?php include '../header1.php'; ?></head>          
+  <head><?php include '../header4.php'; ?></head>          
   
   <!-- <header>
     <h1><i class="fas fa-store"></i> About ToyLand</h1>

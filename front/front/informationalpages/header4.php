@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>head</title>
-    <!-- <link rel="stylesheet" href="../useracc/user.css"> -->
-   
-    <style>
-      /* Header Specific Styles */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About ToyLand</title>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+          /* Header Specific Styles */
 :root {
   --primary-black: #000000;
   --primary-white: #ffffff;
@@ -252,22 +254,21 @@ header {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--dark-gray);
 }
-    </style>
+  </style>
 </head>
 <body>
-    <header>
-    
-    
+  <header>
     <nav>
-      <a href="../../main/index/index.php">Home</a>
-      <a href="../../main/cart/cart.php">Cart</a>
-      <!-- <a href="../useracc/login/logout.php" id="logout">Logout</a> -->
-      <a href="../orderhistory/orderhistory.php">Order History</a>
-      <a href="../register/register.php">Register</a>
-      <a href="../adress/adress.php">Address Book</a>
-      <a href="../wishlist/wishlist.php">Wishlist</a>
-      <a href="../useracc/login/logout.php">log out</a>
-    </nav>
-  </header>
+    <h1><i class="fas fa-store"></i> About toybox</h1>
+  
+    <a href="../../main/index/index.php"><i class="fas fa-home"></i> Home</a>
+    <a href="../../main/productlist/productlist.php"><i class="fas fa-tags"></i> Products</a>
+    <a href="../about/about.php"><i class="fas fa-info-circle"></i> About</a>
+    <a href="../termsprivacy/termsprivacy.php"><i class="fas fa-file-contract"></i> Terms & Privacy</a>
+    <a href="../contact/contact.php"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="../faq/faq.php"><i class="fas fa-question-circle"></i> FAQ</a>
+  </nav>
+</header>
+
 </body>
 </html>

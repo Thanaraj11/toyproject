@@ -409,8 +409,9 @@ header {
                 <ul class="main-nav-links">
                     <li><a href="../index/index.php">Home</a></li>
                     <li><a href="../productlist/productlist.php">Categories</a></li>
-                    <li><a href="../informationalpages/contact/contact.php">Contact</a></li>
-                    <li><a href="../informationalpages/about/about.php">About Us</a></li>
+                    <li><a href="../../informationalpages/contact/contact.php">Contact</a></li>
+                    <li><a href="../../informationalpages/about/about.php">About Us</a></li>
+
                 </ul>
                 
                 <div class="cart-section">
@@ -424,28 +425,6 @@ header {
         </div>
     </header>
     
-    <!-- <main class="demo-content">
-        <h2>Welcome to ToyBox - Your Ultimate Toy Store</h2>
-        <p>This header layout features all elements in a single row as requested:</p>
-        <p><strong>ToyBox logo | Search bar | Navigation links | View Cart button | Cart icon</strong></p>
-        
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-shipping-fast"></i>
-                <h3>Fast Delivery</h3>
-                <p>Get your toys delivered to your doorstep in just 2-3 business days.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-gift"></i>
-                <h3>Best Brands</h3>
-                <p>We carry all the top toy brands that kids love and parents trust.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-headset"></i>
-                <h3>24/7 Support</h3>
-                <p>Our customer service team is always ready to help with any questions.</p>
-            </div>
-        </div>
-    </main> -->
+    
 </body>
 </html>

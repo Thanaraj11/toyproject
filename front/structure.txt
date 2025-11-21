@@ -31,7 +31,7 @@ front
                         |--->faq.php
                  |--->termsprivacy
                         |--->termsprivacy.php
-                 |--->header1.php
+                 |--->header4.php
                  |--->footer1.php
                  |--->info.css
                  |--->infomation.css
@@ -54,6 +54,7 @@ front
                         |--->productdetails.php
                  |--->productlist
                         |--->produtlist.php
+                 |--->header1.php                        
            |--->useracc
                  |--->address
                         |--->address.php

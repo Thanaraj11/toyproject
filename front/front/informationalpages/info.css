@@ -11,7 +11,7 @@
       line-height: 1.6;
       min-height: 100vh;
     }
-    header {
+    /* header {
       background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
       color: white;
       padding: 2.5rem 2rem;
@@ -48,7 +48,7 @@
       background: rgba(255, 255, 255, 0.3);
       transform: translateY(-3px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+    } */
 
     main {
       max-width: 1200px;
