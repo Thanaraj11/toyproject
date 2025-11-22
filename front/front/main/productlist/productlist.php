@@ -452,7 +452,7 @@ main {
 
 .view-details {
   flex: 1;
-  background: var(--primary-black);
+  background: gray;
   color: var(--primary-white);
   padding: 0.6rem 1rem;
   text-decoration: none;

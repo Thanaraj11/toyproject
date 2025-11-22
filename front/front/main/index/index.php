@@ -384,15 +384,16 @@ nav[aria-label="Categories"] h2 {
 
 .view-details {
   flex: 1;
-  background: var(--primary-black);
+  background: gray;
   color: var(--primary-white);
-  padding: 0.5rem 0.8rem; /* Smaller padding */
+  padding: 1rem 1rem; /* Smaller padding */
   text-decoration: none;
   border-radius: 5px; /* Smaller radius */
   text-align: center;
-  font-weight: 600;
+  font-weight: 1000;
   transition: all 0.3s ease;
   min-width: 0; /* Allow flexible width */
+  max-width: 80px;
   font-size: 0.8rem; /* Smaller font */
   white-space: nowrap;
 }
@@ -412,7 +413,7 @@ nav[aria-label="Categories"] h2 {
   background: var(--dark-blue);
   color: var(--primary-white);
   border: none;
-  padding: 0.5rem 0.8rem; /* Smaller padding */
+  padding: 0.5rem 0.5rem; /* Smaller padding */
   border-radius: 5px; /* Smaller radius */
   cursor: pointer;
   font-weight: 600;
@@ -435,112 +436,243 @@ nav[aria-label="Categories"] h2 {
   font-size: 0.7rem; /* Smaller icon */
 }
 
-/* Promotional Banners */
+/* Promotional Banners Section */
 #promotional-banners {
   position: relative;
-  margin-bottom: 3rem;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Banners Container */
 #banners-container {
   display: flex;
-  overflow: hidden;
-  height: 350px; /* Slightly smaller */
-  position: relative;
+  transition: transform 0.5s ease-in-out;
+  height: 400px; /* Adjust height as needed */
 }
 
+/* Individual Banner */
 .banner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative;
+  min-width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.banner.active {
-  opacity: 1;
+  flex-shrink: 0;
 }
 
 .banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+/* Banner Content Overlay */
 .banner-content {
   position: absolute;
-  top: 50%;
-  left: 10%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.7);
-  padding: 1.5rem; /* Smaller padding */
-  border-radius: 8px;
-  max-width: 450px; /* Slightly smaller */
-  color: var(--primary-white);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  padding: 30px;
+  padding-top: 60px; /* Extra padding for gradient effect */
 }
 
 .banner-content h2 {
-  font-size: 2rem; /* Smaller */
-  margin: 0 0 0.8rem 0;
-  color: var(--primary-white);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .banner-content p {
-  font-size: 1rem; /* Smaller */
-  margin: 0 0 1.2rem 0;
-  line-height: 1.4;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  line-height: 1.5;
 }
 
+/* Banner Button */
 .banner-btn {
-  background: var(--dark-blue);
-  color: var(--primary-white);
-  padding: 0.6rem 1.2rem; /* Smaller */
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 6px;
   font-weight: 600;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  border: 2px solid #007bff;
 }
 
 .banner-btn:hover {
-  background: var(--medium-blue);
-  transform: translateY(-1px);
+  background: transparent;
+  color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 /* Banner Controls */
 #banner-controls {
   position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 0.8rem;
+  justify-content: space-between;
+  padding: 0 20px;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 #banner-prev,
 #banner-next {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   border: none;
-  width: 35px; /* Smaller */
-  height: 35px; /* Smaller */
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: var(--primary-black);
-  font-weight: bold;
-  font-size: 0.8rem;
+  pointer-events: all;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #banner-prev:hover,
 #banner-next:hover {
-  background: var(--primary-white);
+  background: white;
   transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Banner Indicators (Optional) */
+.banner-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.banner-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-indicator.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #banners-container {
+    height: 300px;
+  }
+  
+  .banner-content {
+    padding: 20px;
+    padding-top: 50px;
+  }
+  
+  .banner-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .banner-content p {
+    font-size: 1rem;
+  }
+  
+  #banner-controls {
+    padding: 0 10px;
+  }
+  
+  #banner-prev,
+  #banner-next {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #banners-container {
+    height: 250px;
+  }
+  
+  .banner-content {
+    padding: 15px;
+    padding-top: 40px;
+  }
+  
+  .banner-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .banner-content p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .banner-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation for banner transitions */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.banner.active {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+/* Alternative content positioning options */
+/* Center content */
+.banner-content.center {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+  text-align: center;
+}
+
+/* Left aligned content */
+.banner-content.left {
+  right: auto;
+  width: 50%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
+}
+
+/* Right aligned content */
+.banner-content.right {
+  left: auto;
+  width: 50%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+}
 /* Image Gallery */
 .images-container {
   display: flex;
@@ -608,37 +740,35 @@ nav[aria-label="Categories"] h2 {
   font-size: 0.9rem;
 }
 
-/* Wishlist Notification */
-.wishlist-notification {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  padding: 0.8rem 1.2rem;
-  border-radius: 5px;
-  font-weight: 600;
-  z-index: 1000;
-  transform: translateX(400px);
-  opacity: 0;
+/* Wishlist Button */
+.wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--primary-white);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   transition: all 0.3s ease;
-  max-width: 280px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  color: var(--text-gray);
   font-size: 0.9rem;
 }
 
-.wishlist-notification.show {
-  transform: translateX(0);
-  opacity: 1;
+.wishlist-btn:hover {
+  background: var(--heart-red);
+  color: var(--primary-white);
+  transform: scale(1.1);
 }
 
-.wishlist-notification.success {
-  background: var(--success-green);
+.wishlist-btn.added {
+  background: var(--heart-red);
   color: var(--primary-white);
-  border-left: 3px solid #2e7d32;
-}
-
-.wishlist-notification.error {
-  background: var(--error-red);
-  color: var(--primary-white);
-  border-left: 3px solid #c62828;
 }
 
 /* Responsive Design for 4-column layout */
@@ -755,6 +885,7 @@ nav[aria-label="Categories"] h2 {
 .card:nth-child(2) { animation-delay: 0.2s; }
 .card:nth-child(3) { animation-delay: 0.3s; }
 .card:nth-child(4) { animation-delay: 0.4s; }
+
   </style>
 </head>
 <body>
@@ -818,14 +949,14 @@ nav[aria-label="Categories"] h2 {
                 </p>
                 <div class="product-actions">
                   <a href="../productdetails/productdetails.php?id=<?php echo $product['id']; ?>" class="view-details">
-                    View Details
+                    View <br>Details
                   </a>
                   <form method="POST" action="../cart/cart_backend.php" class="add-to-cart-form">
                     <input type="hidden" name="action" value="add">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="add-to-cart">
-                      <i class="fas fa-cart-plus"></i> Add to cart
+                      <i class="fas fa-cart-plus"></i><br> Add to cart
                     </button>
                   </form>
                 </div>
@@ -862,7 +993,7 @@ nav[aria-label="Categories"] h2 {
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="scroll-hint">← Scroll horizontally to view more images →</div>
+            
         <?php endif; ?>
     </div>
 
@@ -959,7 +1090,7 @@ nav[aria-label="Categories"] h2 {
                 </p>
                 <div class="product-actions">
                   <a href="../productdetails/productdetails.php?id=<?php echo $product['id']; ?>" class="view-details">
-                    View Details
+                    View 
                   </a>
                   <form method="POST" action="../cart/cart_backend.php" class="add-to-cart-form">
                     <input type="hidden" name="action" value="add">
@@ -1014,7 +1145,7 @@ nav[aria-label="Categories"] h2 {
                 </p>
                 <div class="product-actions">
                   <a href="../productdetails/productdetails.php?id=<?php echo $product['id']; ?>" class="view-details">
-                    View Details
+                    View 
                   </a>
                   <form method="POST" action="../cart/cart_backend.php" class="add-to-cart-form">
                     <input type="hidden" name="action" value="add">

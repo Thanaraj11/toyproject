@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_payment'])) {
             $_SESSION['order_complete'] = true;
             
             // Redirect to order confirmation page
-            header("Location: ../orderconfirm/orderconfirm.php");
+            header("Location: ../../orderconfirm/orderconfirm.php");
             exit();
         } else {
             $_SESSION['payment_error'] = "Payment processing failed. Please try again.";

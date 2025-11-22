@@ -266,7 +266,7 @@ header {
       <a href="../register/register.php">Register</a>
       <a href="../adress/adress.php">Address Book</a>
       <a href="../wishlist/wishlist.php">Wishlist</a>
-      <a href="../useracc/login/logout.php">log out</a>
+      <a href="../login/logout.php">log out</a>
     </nav>
   </header>
 </body>

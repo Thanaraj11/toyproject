@@ -615,8 +615,8 @@ a:focus {
           </section>
 
           <button type="submit" class="btn-primary">
-           <a href="../../orderconfirm/orderconfirm.php"> <i class="fas fa-lock"></i> Complete Order</a>
-          </button>
+             <i class="fas fa-lock"></i> Complete Order
+         </button>
           
           <a href="../shipping/shipping.php" class="btn-secondary" style="display: block; text-align: center; margin-top: 1rem;">
             <i class="fas fa-arrow-left"></i> Back to Shipping
