@@ -5,6 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footer</title>
     <link rel="stylesheet" href="../main/style1.css">
+    <style>
+      /* Footer Styles - Black & White Theme */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 40px 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 10px;
+}
+
+.footer-column p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #333333;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-links i {
+    margin-right: 10px;
+    width: 16px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.copyright {
+    border-top: 1px solid #333333;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.copyright p {
+    color: #cccccc;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-column {
+        min-width: 100%;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 30px 0 15px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .footer-column h3 {
+        font-size: 16px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 8px;
+    }
+}
+
+/* Font Awesome icon styles (if not already loaded) */
+.fab, .fas {
+    font-family: "Font Awesome 5 Brands", "Font Awesome 5 Free";
+    font-weight: 400;
+}
+
+.fas {
+    font-weight: 900;
+}
+
+.fa-facebook:before { content: "\f39e"; }
+.fa-twitter:before { content: "\f099"; }
+.fa-instagram:before { content: "\f16d"; }
+.fa-pinterest:before { content: "\f0d2"; }
+.fa-map-marker-alt:before { content: "\f3c5"; }
+.fa-phone:before { content: "\f095"; }
+.fa-envelope:before { content: "\f0e0"; }
+.fa-clock:before { content: "\f017"; }
+    </style>
 </head>
 <body>
     <footer>

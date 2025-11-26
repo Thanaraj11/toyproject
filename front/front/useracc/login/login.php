@@ -16,187 +16,195 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in']) && $_SESSION['l
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="login.css">
+  <!-- <link rel="stylesheet" href="login.css"> -->
   <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
+ <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    
-    header {
-      background: transparent;
-      padding: 2%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin: 2%;
 
+    body {
+        font-family: Arial, sans-serif;
+        background-color: white;
+        color: #333;
+        line-height: 1.6;
     }
-    
+
+    header {
+        background: white;
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
     header h1 {
-      margin: 0;
-      color: #333;
+        margin-bottom: 0.5rem;
+        color: #333;
     }
-    
+
     nav a {
-      color: #007bff;
-      text-decoration: none;
+        color: #007bff;
+        text-decoration: none;
     }
-    
+
     nav a:hover {
-      text-decoration: underline;
+        text-decoration: underline;
     }
-    
+
     main {
-      max-width: 400px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 0 1rem;
     }
-    
+
     #login-form {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        background: white;
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
     }
-    
+
     #login-form h2 {
-      margin-top: 0;
-      text-align: center;
-      color: #333;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
     }
-    
+
     label {
-      display: block;
-      margin-bottom: 1rem;
-      font-weight: 600;
+        display: block;
+        margin-bottom: 1rem;
+        font-weight: bold;
     }
-    
+
     input[type="email"],
     input[type="password"] {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-      margin-top: 0.25rem;
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 0.25rem;
     }
-    
+
     button[type="submit"] {
-      width: 100%;
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 0.75rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-bottom: 1rem;
+        width: 100%;
+        padding: 0.75rem;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-bottom: 1rem;
     }
-    
+
     button[type="submit"]:hover {
-      background: #0056b3;
+        background: #0056b3;
     }
-    
+
     #forgot-password {
-      display: block;
-      text-align: center;
-      color: #6c757d;
-      text-decoration: none;
-      margin-bottom: 1rem;
+        display: block;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        margin-bottom: 1rem;
     }
-    
+
     #forgot-password:hover {
-      color: #0056b3;
+        text-decoration: underline;
     }
-    
+
     .divider {
-      text-align: center;
-      margin: 1rem 0;
-      color: #6c757d;
-      position: relative;
+        text-align: center;
+        margin: 1rem 0;
+        color: #666;
+        position: relative;
     }
-    
-    .divider::before,
-    .divider::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 45%;
-      height: 1px;
-      background: #ddd;
-    }
-    
+
     .divider::before {
-      left: 0;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #ddd;
+        z-index: 1;
     }
-    
-    .divider::after {
-      right: 0;
+
+    .divider {
+        background: white;
+        padding: 0 1rem;
+        display: inline-block;
+        position: relative;
+        z-index: 2;
     }
-    
+
     .social-login {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
     }
-    
+
     .social-btn {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 0.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
+
     .social-btn:hover {
-      background: #f8f9fa;
+        background: #f8f9fa;
     }
-    
+
     .social-btn svg {
-      width: 24px;
-      height: 24px;
+        width: 24px;
+        height: 24px;
     }
-    
+
     #create-account {
-      display: block;
-      text-align: center;
-      color: #007bff;
-      text-decoration: none;
+        display: block;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
     }
-    
+
     #create-account:hover {
-      text-decoration: underline;
+        text-decoration: underline;
     }
-    
+
+    .success-message,
     .error-message {
-      background: #f8d7da;
-      color: #721c24;
-      padding: 0.75rem;
-      border: 1px solid #f5c6cb;
-      border-radius: 4px;
-      margin-bottom: 1rem;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        text-align: center;
     }
-    
+
     .success-message {
-      background: #d4edda;
-      color: #155724;
-      padding: 0.75rem;
-      border: 1px solid #c3e6cb;
-      border-radius: 4px;
-      margin-bottom: 1rem;
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
     }
-  </style>
+
+    .error-message {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+</style>
 </head>
 <body>
   <header>
-    <h1>Customer Login</h1>
+    
     <nav>
+      <h1>Customer Login</h1>
       <a href="../../main/index/index.php">Home</a>
     </nav>
   </header>

@@ -13,21 +13,9 @@
   </style> -->
 </head>
 <body>
-   <!-- <div class="iframe-container">
-                <iframe src="../header1.html" width="100%" height="300px"></iframe>
-            </div> -->
+   
            <head><?php include '../header4.php'; ?></head>
-  <!-- <header>
-    <h1><i class="fas fa-store"></i> About ToyLand</h1>
-    <nav>
-      <a href="../../main/index/index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="../../main/productdetails/productdetails.html"><i class="fas fa-tags"></i> Products</a>
-      <a href="../about/about.html">about</a>
-      <a href="../termsprivacy/termsprivacy.html">termsprivacy</a>
-      <a href="../contact/contact.html"><i class="fas fa-envelope"></i> Contact</a>
-      <a href="../faq/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-    </nav>
-  </header> -->
+  
 
   <main>
     <section class="contact-info">
