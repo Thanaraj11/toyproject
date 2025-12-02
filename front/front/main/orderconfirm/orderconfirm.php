@@ -60,7 +60,8 @@ function calculateOrderSummary() {
                 'name' => "Product " . $product_id,
                 'price' => $price,
                 'quantity' => $quantity,
-                'total' => $item_total
+                'total' => $item_total,
+                'sku' => 'SKU' . $product_id  // Add SKU
             ];
         }
     }
@@ -110,12 +111,14 @@ function createOrderInDatabase() {
     $shipping_info = $_SESSION['shipping_info'];
     $payment_info = $_SESSION['payment_info'];
     
-    // For demo, using customer ID 1 - in real app, use logged-in customer ID
-    $customer_id = $_SESSION['user_id'];
+    // Use logged-in user ID
+    $customer_id = intval($_SESSION['user_id']);
     
-    // Create shipping address
-    $shipping_address_id = createAddress($shipping_info);
-    $billing_address_id = $shipping_address_id; // Same as shipping for demo
+    // Create shipping address with correct structure
+    $shipping_address_id = createAddress($customer_id, $shipping_info, 'shipping');
+    
+    // Create billing address (same as shipping for now)
+    $billing_address_id = createAddress($customer_id, $shipping_info, 'billing');
     
     // Prepare order items
     $order_items = [];
@@ -142,24 +145,134 @@ function createOrderInDatabase() {
     return $order_id;
 }
 
-// Function to create address
-function createAddress($address_info) {
+// Function to create or update address for a customer
+function createAddress($customer_id, $address_info, $type = 'shipping') {
     global $conn;
     
-    $street = mysqli_real_escape_string($conn, $address_info['address1'] . ($address_info['address2'] ? ' ' . $address_info['address2'] : ''));
-    $city = mysqli_real_escape_string($conn, $address_info['city']);
-    $state = mysqli_real_escape_string($conn, 'CA'); // Default state
-    $zip_code = mysqli_real_escape_string($conn, $address_info['postal']);
-    $country = mysqli_real_escape_string($conn, $address_info['country']);
+    // Sanitize inputs
+    $customer_id = intval($customer_id);
+    $full_name = mysqli_real_escape_string($conn, $address_info['fullname'] ?? '');
+    $phone = mysqli_real_escape_string($conn, $address_info['phone'] ?? '');
+    $address_line1 = mysqli_real_escape_string($conn, $address_info['address1'] ?? '');
+    $address_line2 = mysqli_real_escape_string($conn, $address_info['address2'] ?? '');
+    $city = mysqli_real_escape_string($conn, $address_info['city'] ?? '');
+    $state = mysqli_real_escape_string($conn, $address_info['state'] ?? 'CA');
+    $zip_code = mysqli_real_escape_string($conn, $address_info['postal'] ?? '');
+    $country = mysqli_real_escape_string($conn, $address_info['country'] ?? '');
+    $address_type = mysqli_real_escape_string($conn, $type);
     
-    $sql = "INSERT INTO addresses (street, city, state, zip_code, country) 
-            VALUES ('$street', '$city', '$state', '$zip_code', '$country')";
+    // First, check if this exact address exists for this customer
+    $check_sql = "SELECT id, full_name, phone FROM addresses 
+                  WHERE customer_id = '$customer_id' 
+                  AND BINARY address_line1 = '$address_line1' 
+                  AND BINARY address_line2 " . ($address_line2 ? "= '$address_line2'" : "IS NULL") . "
+                  AND BINARY city = '$city' 
+                  AND BINARY state = '$state' 
+                  AND BINARY zip_code = '$zip_code' 
+                  AND BINARY country = '$country'
+                  LIMIT 1";
+    
+    $check_result = mysqli_query($conn, $check_sql);
+    
+    if ($check_result && mysqli_num_rows($check_result) > 0) {
+        $existing_address = mysqli_fetch_assoc($check_result);
+        $address_id = $existing_address['id'];
+        
+        // Update name and phone if they're different (optional)
+        if ($existing_address['full_name'] !== $full_name || $existing_address['phone'] !== $phone) {
+            $update_sql = "UPDATE addresses 
+                          SET full_name = '$full_name', 
+                              phone = '$phone',
+                              updated_at = NOW()
+                          WHERE id = '$address_id'";
+            mysqli_query($conn, $update_sql);
+        }
+        
+        return $address_id;
+    }
+    
+    // Check if customer has reached address limit (optional)
+    $limit_sql = "SELECT COUNT(*) as address_count FROM addresses 
+                  WHERE customer_id = '$customer_id'";
+    $limit_result = mysqli_query($conn, $limit_sql);
+    $limit_data = mysqli_fetch_assoc($limit_result);
+    
+    // Optional: Set a limit on number of addresses per customer
+    if ($limit_data['address_count'] >= 10) { // Maximum 10 addresses per customer
+        // Find and update the oldest non-default address
+        $oldest_sql = "SELECT id FROM addresses 
+                      WHERE customer_id = '$customer_id' 
+                      AND is_default = 0 
+                      ORDER BY created_at ASC 
+                      LIMIT 1";
+        $oldest_result = mysqli_query($conn, $oldest_sql);
+        
+        if ($oldest_result && mysqli_num_rows($oldest_result) > 0) {
+            $old_address = mysqli_fetch_assoc($oldest_result);
+            $address_id = $old_address['id'];
+            
+            // Update the existing address
+            $update_sql = "UPDATE addresses 
+                          SET type = '$address_type',
+                              full_name = '$full_name',
+                              phone = '$phone',
+                              address_line1 = '$address_line1',
+                              address_line2 = '$address_line2',
+                              city = '$city',
+                              state = '$state',
+                              zip_code = '$zip_code',
+                              country = '$country',
+                              updated_at = NOW()
+                          WHERE id = '$address_id'";
+            
+            if (mysqli_query($conn, $update_sql)) {
+                return $address_id;
+            }
+        }
+    }
+    
+    // If this is the first address for the customer, set it as default
+    $is_default = ($limit_data['address_count'] == 0) ? 1 : 0;
+    
+    // Create new address
+    $sql = "INSERT INTO addresses (
+                customer_id, 
+                type, 
+                full_name, 
+                phone, 
+                address_line1, 
+                address_line2, 
+                city, 
+                state, 
+                zip_code, 
+                country,
+                is_default,
+                created_at,
+                updated_at
+            ) VALUES (
+                '$customer_id',
+                '$address_type',
+                '$full_name',
+                '$phone',
+                '$address_line1',
+                '$address_line2',
+                '$city',
+                '$state',
+                '$zip_code',
+                '$country',
+                '$is_default',
+                NOW(),
+                NOW()
+            )";
     
     if (mysqli_query($conn, $sql)) {
         return mysqli_insert_id($conn);
     }
     
-    return 1; // Return default address ID if creation fails
+    // Log error for debugging
+    error_log("Failed to create address for customer $customer_id: " . mysqli_error($conn));
+    
+    return false;
 }
 ?>
 
@@ -168,136 +281,18 @@ function createAddress($address_info) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="../../style1.css">
+  <link rel="stylesheet" href="orderconfirm.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Order Confirmation - ToyBox</title>
   <style>
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-    }
     
-    .confirmation-header {
-      text-align: center;
-      background: #d4edda;
-      padding: 2rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-      border: 1px solid #c3e6cb;
-    }
-    
-    .confirmation-header h2 {
-      color: #155724;
-      margin-bottom: 1rem;
-    }
-    
-    .confirmation-details {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .detail-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .detail-card h3 {
-      color: #333;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #007bff;
-      padding-bottom: 0.5rem;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-    }
-    
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    th {
-      background-color: #f8f9fa;
-      font-weight: bold;
-    }
-    
-    .order-totals {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-    }
-    
-    .order-totals p {
-      margin: 0.5rem 0;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .order-total {
-      font-size: 1.2em;
-      font-weight: bold;
-      border-top: 2px solid #dee2e6;
-      padding-top: 1rem;
-      margin-top: 1rem;
-    }
-    
-    .action-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-    
-    .btn-primary {
-      background-color: #007bff;
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 4px;
-      display: inline-block;
-    }
-    
-    .btn-secondary {
-      background-color: #6c757d;
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 4px;
-      display: inline-block;
-    }
-    
-    .print-btn {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
-    }
   </style>
 </head>
 <body>
   <!-- <?php include '../header1.php'; ?> -->
 
   <main class="container">
-    <!-- <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ol>
-        <li><a href="../index/index.php">Home</a></li>
-        <li><a href="../cart/cart.php">Shopping Cart</a></li>
-        <li aria-current="page">Order Confirmation</li>
-      </ol>
-    </nav> -->
+    
 
     <section class="confirmation-header">
       <h2><i class="fas fa-check-circle"></i> Thank you for your purchase!</h2>

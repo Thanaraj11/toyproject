@@ -1,353 +1,426 @@
-/* CSS Variables for consistent theming */
-    /* :root {
-      --primary-color: #4a6de5;
-      --primary-dark: #3a59c7;
-      --secondary-color: #f8f9fa;
-      --text-color: #333;
-      --text-light: #6c757d;
-      --border-color: #dee2e6;
-      --success-color: #28a745;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --border-radius: 8px;
-      --transition: all 0.3s ease;
-    } */
-    
-    /* Base Styles */
-    /* * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: var(--text-color);
-      background-color: #f5f7fa;
-      padding: 0;
-      margin: 0;
-    } */
-    
-    /* Header Styles */
-    /* header {
-      background-color: white;
-      box-shadow: var(--shadow);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    header h1 {
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      margin: 0;
-    }
-    
-    nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-    
-    nav a {
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    
-    nav a:hover {
-      color: var(--primary-color);
-    } */
-    
-    /* Main Content */
-    /* main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    } */
-    
-    /* Form Styles */
-    /* #shipping-form {
-      background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      padding: 2rem;
-    }
-    
-    #shipping-form section {
-      margin-bottom: 2rem;
-    }
-    
-    #shipping-form h2 {
-      margin-bottom: 1.5rem;
-      color: var(--text-color);
-      font-size: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-color);
-    } */
-    
-    /* Form Labels and Inputs */
-    /* label {
-      display: block;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-    
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"] {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius);
-      font-size: 1rem;
-      margin-top: 0.5rem;
-      transition: var(--transition);
-    }
-    
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(74, 109, 229, 0.1);
-    }
-     */
-    /* Radio Button Styles */
-    /* input[type="radio"] {
-      margin-right: 0.5rem;
-      accent-color: var(--primary-color);
-    }
-    
-    .radio-option {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      margin-bottom: 0.5rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    
-    .radio-option:hover {
-      border-color: var(--primary-color);
-      background-color: rgba(74, 109, 229, 0.05);
-    }
-    
-    .radio-option label {
-      margin: 0;
-      cursor: pointer;
-      flex-grow: 1;
-    } */
-    
-    /* Button Styles */
-    /* button[type="submit"] {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      width: 100%;
-      transition: var(--transition);
-    }
-    
-    button[type="submit"]:hover {
-      background-color: var(--primary-dark);
-    }
-     */
-    /* Form Layout */
-    /* .form-row {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    .form-group {
-      flex: 1;
-    } */
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem;
-      }
-      
-      header h1 {
-        margin-bottom: 0.5rem;
-      }
-      
-      nav {
-        justify-content: center;
-      }
-      
-      .form-row {
-        flex-direction: column;
-        gap: 0;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      #shipping-form {
-        padding: 1.5rem;
-      }
-    }
+/* Shipping Page Specific Styles */
+:root {
+  --primary-black: #000000;
+  --primary-white: #ffffff;
+  --light-blue: #e3f2fd;
+  --medium-blue: #90caf9;
+  --dark-blue: #1976d2;
+  --light-gray: #f5f5f5;
+  --medium-gray: #e0e0e0;
+  --dark-gray: #424242;
+  --text-gray: #757575;
+  --success-green: #4caf50;
+  --error-red: #f44336;
+}
+
+/* Main Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  margin: 1rem 0 2rem;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--dark-blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+/* Checkout Steps */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.checkout-steps::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--medium-gray);
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--light-gray);
+  border: 2px solid var(--medium-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--text-gray);
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-number {
+  background: var(--dark-blue);
+  border-color: var(--dark-blue);
+  color: var(--primary-white);
+}
+
+.step-text {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+  text-align: center;
+  font-weight: 500;
+}
+
+.step.active .step-text {
+  color: var(--dark-blue);
+  font-weight: 600;
+}
+
+/* Error Message */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid var(--error-red);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* Shipping Form */
+#shipping-form {
+  background: var(--primary-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Sections */
+.section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section h2 {
+  color: var(--primary-black);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--light-blue);
+  padding-bottom: 0.5rem;
+}
+
+/* Form Layout */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--dark-gray);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--medium-gray);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--primary-white);
+  color: var(--primary-black);
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--dark-blue);
+}
 
 
 
-    /* =============================================== */
+/* Radio Options for Shipping Method */
+.radio-option {
+  border: 2px solid var(--medium-gray);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--primary-white);
+  display: inline-block;
+}
 
-     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .checkout-steps {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-    
-    .step {
-      display: flex;
-      align-items: center;
-      margin: 0 15px;
-    }
-    
-    .step-number {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #007bff;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-    }
-    
-    .step.active .step-number {
-      background-color: #28a745;
-    }
-    
-    .step-text {
-      font-weight: bold;
-      font-size: 0.9em;
-    }
-    
-    .form-row {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    .form-group {
-      flex: 1;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 1em;
-    }
-    
-    .form-group input:focus, .form-group select:focus {
-      border-color: #007bff;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-    }
-    
-    .radio-option {
-      margin-bottom: 0.5rem;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    
-    .radio-option:hover {
-      border-color: #007bff;
-    }
-    
-    .radio-option.selected {
-      border-color: #007bff;
-      background-color: #f8f9ff;
-    }
-    
-    .radio-option input[type="radio"] {
-      margin-right: 0.5rem;
-    }
-    
-    .btn-primary {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1.1em;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    .btn-primary:hover {
-      background-color: #0056b3;
-    }
-    
-    .btn-secondary {
-      background-color: #6c757d;
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 4px;
-      display: inline-block;
-      margin-left: 10px;
-    }
-    
-    .btn-secondary:hover {
-      background-color: #545b62;
-    }
-    
-    .error-message {
-      color: #dc3545;
-      background: #f8d7da;
-      padding: 1rem;
-      border: 1px solid #f5c6cb;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    
-    .success-message {
-      color: #155724;
-      background: #d4edda;
-      padding: 1rem;
-      border: 1px solid #c3e6cb;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    
-    .section {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
+.radio-option:hover {
+  border-color: var(--medium-blue);
+  background: var(--light-gray);
+}
+
+.radio-option.selected {
+  border-color: var(--dark-blue);
+  background: var(--light-blue);
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 0.75rem;
+  transform: scale(1.2);
+}
+
+.radio-option label {
+  cursor: pointer;
+  margin: 0;
+  display: block;
+}
+
+.radio-option strong {
+  color: var(--primary-black);
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.radio-option small {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+}
+
+/* Action Buttons */
+#shipping-form > div[style*="display: flex"] {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--medium-gray);
+}
+
+.btn-primary {
+  background: var(--dark-blue);
+  color: var(--primary-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background: #1565c0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+.btn-secondary {
+  background: var(--light-gray);
+  color: var(--dark-gray);
+  border: 1px solid var(--medium-gray);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 150px;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background: var(--medium-gray);
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem 1.5rem;
+  }
+  
+  .checkout-steps {
+    margin-bottom: 2rem;
+  }
+  
+  .step-text {
+    font-size: 0.7rem;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+  
+  #shipping-form {
+    padding: 1.5rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .form-group {
+    min-width: auto;
+  }
+  
+  #shipping-form > div[style*="display: flex"] {
+    flex-direction: column;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-steps {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .checkout-steps::before {
+    display: none;
+  }
+  
+  .step {
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .step-text {
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  #shipping-form {
+    padding: 1rem;
+  }
+  
+  .section h2 {
+    font-size: 1.1rem;
+  }
+  
+  .radio-option {
+    padding: 0.75rem;
+  }
+  
+  .radio-option strong {
+    font-size: 0.9rem;
+  }
+  
+  .radio-option small {
+    font-size: 0.8rem;
+  }
+}
+
+/* Focus Styles for Accessibility */
+button:focus,
+input:focus,
+select:focus,
+a:focus {
+  outline: 2px solid var(--dark-blue);
+  outline-offset: 2px;
+}
+
+/* Required Field Indicator */
+.form-group label::after {
+  content: " *";
+  color: var(--error-red);
+}
+
+.form-group label:has(+ input:not([required]))::after {
+  content: "";
+}
+
+/* Print Styles */
+@media print {
+  .breadcrumb,
+  .checkout-steps,
+  .btn-secondary {
+    display: none !important;
+  }
+  
+  #shipping-form {
+    box-shadow: none;
+    border: 1px solid var(--primary-black);
+  }
+  
+  .btn-primary {
+    display: none !important;
+  }
+  
+  .radio-option {
+    border: 1px solid var(--primary-black);
+  }
+}

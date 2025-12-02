@@ -1,259 +1,113 @@
-/* Base styles and reset */
-/* :root {
-      --primary: #7E57C2;
-      --secondary: #29B6F6;
-      --accent: #FF4081;
-      --light: #F5F5F5;
-      --dark: #263238;
-      --success: #66BB6A;
-      --warning: #FFA726;
-      --gray: #BDBDBD;
-      --white: #FFFFFF;
-      --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      --hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }    
-
-* {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f8f9fa;
-      padding: 0;
-      margin: 0;
-    } */
-    
-    /* Header styles */
-    /* header {
-      background: linear-gradient(135deg, #6c5ce7, #8e44ad);
-      color: white;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    header h1 {
-      margin-bottom: 1rem;
-      font-size: 2.2rem;
-      text-align: center;
-    } */
-    
-    /* Navigation styles */
-    /* .main-nav {
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-radius: 12px;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.main-nav-links {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 2rem;
-}
-
-.main-nav-links li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.main-nav-links li a:hover {
-  color: #007bff;
-}
-
-.view-cart {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.view-cart:hover {
-  background-color: #0056b3;
-} */
-
-    
-    /* Main content layout */
-    /* main {
+.container {
       max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-    } */
+      margin: 0 auto;
+      padding: 20px;
+    }
     
-    /* Confirmation message section */
-    #confirmation-message {
-      background-color: white;
+    .confirmation-header {
+      text-align: center;
+      background: #d4edda;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      text-align: center;
+      margin-bottom: 2rem;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .confirmation-header h2 {
+      color: #155724;
+      margin-bottom: 1rem;
+    }
+    
+    .confirmation-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
       margin-bottom: 2rem;
     }
     
-    #confirmation-message h2 {
-      color: #27ae60;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-    }
-    
-    #confirmation-message p {
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-    
-    /* Purchase summary section */
-    #purchase-summary {
-      background-color: white;
-      padding: 2rem;
+    .detail-card {
+      background: white;
+      padding: 1.5rem;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
-    #purchase-summary h3 {
-      color: #6c5ce7;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      text-align: center;
+    .detail-card h3 {
+      color: #333;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 0.5rem;
     }
     
-    /* Table styles */
-    /* table {
+    table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 1.5rem;
-    }
-    
-    thead {
-      background-color: #6c5ce7;
-      color: white;
+      margin-bottom: 2rem;
     }
     
     th, td {
-      padding: 1rem;
+      padding: 12px;
       text-align: left;
+      border-bottom: 1px solid #ddd;
     }
     
     th {
-      font-weight: 600;
+      background-color: #f8f9fa;
+      font-weight: bold;
     }
     
-    tr {
-      border-bottom: 1px solid #eaeaea;
+    .order-totals {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
     }
     
-    tr:last-child {
-      border-bottom: none;
-    }
-     */
-    /* Summary pricing */
-    #purchase-summary p {
-      margin-bottom: 0.5rem;
-      padding: 0.3rem 0;
+    .order-totals p {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
     }
     
-    #subtotal, #shipping {
-      border-bottom: 1px dashed #eaeaea;
-    }
-    
-    #order-total {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #6c5ce7;
+    .order-total {
+      font-size: 1.2em;
+      font-weight: bold;
+      border-top: 2px solid #dee2e6;
+      padding-top: 1rem;
       margin-top: 1rem;
-      padding-top: 0.5rem;
-      border-top: 2px solid #6c5ce7;
     }
     
-    /* Success icon */
-    .success-icon {
-      display: inline-block;
-      width: 60px;
-      height: 60px;
-      background-color: #27ae60;
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .btn-primary {
+      background-color: #007bff;
       color: white;
-      border-radius: 50%;
-      line-height: 60px;
-      text-align: center;
-      font-size: 30px;
-      margin-bottom: 1rem;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      display: inline-block;
     }
     
-    /* Responsive design */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      
-      nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      
-      main {
-        padding: 0 1rem;
-      }
-      
-      #confirmation-message, #purchase-summary {
-        padding: 1.5rem;
-      }
-      
-      table {
-        display: block;
-        overflow-x: auto;
-      }
-      
-      th, td {
-        padding: 0.75rem;
-      }
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      display: inline-block;
     }
     
-    /* Animation for confirmation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    #confirmation-message {
-      animation: fadeIn 0.8s ease;
-    }
-    
-    /* Print styles */
-    @media print {
-      header, nav {
-        display: none;
-      }
-      
-      body {
-        background-color: white;
-        color: black;
-      }
-      
-      #confirmation-message, #purchase-summary {
-        box-shadow: none;
-        border: 1px solid #ddd;
-      }
+    .print-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
     }
