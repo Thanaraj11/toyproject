@@ -156,8 +156,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php foreach ($search_results as $product): ?>
             <article class="card" role="listitem">
               <div class="image-container">
-                <img class="image" src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="200" height="200">
-                
+                     <img class="image" src="<?php 
+              // Check if product has images array and use the first one
+                      if (!empty($product['images']) && is_array($product['images'])) {
+                                 echo htmlspecialchars($product['images'][0]['image_url']);
+                                 } else {
+                // Fallback to the main image_url from products table
+                    echo htmlspecialchars($product['image_url'] ?? '../images/default-product.jpg');
+                            }
+                   ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="200" height="200">               
                 <!-- Wishlist Heart Button -->
                                 
                 <?php if ($product['is_featured']): ?>
@@ -209,26 +216,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if (empty($productImages)): ?>
             <p>No images found.</p>
         <?php else: ?>
-            <div class="images-container" id="imagesScroll">
-                <?php foreach ($productImages as $image): ?>
-                    <div class="image-wrapper">
-                        <img 
-                            src="<?php echo htmlspecialchars($image['image_url']); ?>" 
-                            alt="<?php echo htmlspecialchars($image['alt_text'] ?? 'Product Image'); ?>" 
-                            class="product-image"
-                            onerror="this.src='https://via.placeholder.com/200x150?text=Image+Not+Found'"
-                        >
-                        <!-- <div class="image-info">
-                            <strong>Product ID: <?php echo $image['product_id']; ?></strong>
-                            <?php if ($image['is_primary']): ?>
-                                <span class="primary-badge">Primary</span>
-                            <?php endif; ?>
-                            <br>
-                            <small>Order: <?php echo $image['sort_order']; ?></small>
-                        </div> -->
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <!-- Update the image gallery section: -->
+<div class="images-container" id="imagesScroll">
+    <?php 
+    $groupedImages = getProductImagesGrouped($conn);
+    if (!empty($groupedImages)): 
+        foreach ($groupedImages as $product_id => $productImages): 
+            foreach ($productImages as $image): ?>
+                <div class="image-wrapper">
+                    <img 
+                        src="<?php echo htmlspecialchars($image['image_url']); ?>" 
+                        alt="<?php echo htmlspecialchars($image['alt_text'] ?? $image['product_name'] ?? 'Product Image'); ?>" 
+                        class="product-image"
+                        onerror="this.src='https://via.placeholder.com/200x150?text=Image+Not+Found'"
+                    >
+                </div>
+            <?php endforeach; 
+        endforeach; 
+    else: ?>
+        <p>No images found.</p>
+    <?php endif; ?>
+</div>
             
         <?php endif; ?>
     </div>
@@ -300,7 +308,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php foreach ($featured_products as $product): ?>
             <article class="card" role="listitem" >
               <div class="image-container">
-                <img class="image" src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="200" height="200">
+                <img class="image" src="<?php 
+    // Check if product has images array and use the first one
+    if (!empty($product['images']) && is_array($product['images'])) {
+        echo htmlspecialchars($product['images'][0]['image_url']);
+    } else {
+        // Fallback to the main image_url from products table
+        echo htmlspecialchars($product['image_url'] ?? '../images/default-product.jpg');
+    }
+?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="200" height="200">
                 
                 <!-- Wishlist Heart Button -->
                <!-- Wishlist Button as Form -->
@@ -352,7 +368,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php foreach ($all_products as $product): ?>
             <article class="card" role="listitem">
               <div class="image-container">
-                <img class="image" src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="200" height="200">
+                <img class="image" src="<?php 
+    // Check if product has images array and use the first one
+    if (!empty($product['images']) && is_array($product['images'])) {
+        echo htmlspecialchars($product['images'][0]['image_url']);
+    } else {
+        // Fallback to the main image_url from products table
+        echo htmlspecialchars($product['image_url'] ?? '../images/default-product.jpg');
+    }
+?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="200" height="200">
                 
                 <!-- Wishlist Heart Button -->
                <!-- Wishlist Button as Form -->

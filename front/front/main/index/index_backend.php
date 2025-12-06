@@ -74,7 +74,7 @@ function getBanners($conn) {
 
 
 /**
- * Get featured products
+ * Get featured products with their images
  */
 function getFeaturedProducts($conn, $limit = 8) {
     $limit = mysqli_real_escape_string($conn, $limit);
@@ -91,6 +91,20 @@ function getFeaturedProducts($conn, $limit = 8) {
     
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+            // Get all images for this product
+            $product_id = $row['id'];
+            $images_sql = "SELECT * FROM product_images 
+                          WHERE product_id = $product_id 
+                          ORDER BY is_primary DESC, sort_order ASC";
+            $images_result = mysqli_query($conn, $images_sql);
+            $images = array();
+            
+            if ($images_result && mysqli_num_rows($images_result) > 0) {
+                while ($image_row = mysqli_fetch_assoc($images_result)) {
+                    $images[] = $image_row;
+                }
+            }
+            $row['images'] = $images;
             $products[] = $row;
         }
     }
@@ -99,7 +113,7 @@ function getFeaturedProducts($conn, $limit = 8) {
 }
 
 /**
- * Get all products with pagination
+ * Get all products with pagination and images
  */
 function getAllProducts($conn, $limit = 12) {
     $limit = mysqli_real_escape_string($conn, $limit);
@@ -116,6 +130,20 @@ function getAllProducts($conn, $limit = 12) {
     
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+            // Get all images for this product
+            $product_id = $row['id'];
+            $images_sql = "SELECT * FROM product_images 
+                          WHERE product_id = $product_id 
+                          ORDER BY is_primary DESC, sort_order ASC";
+            $images_result = mysqli_query($conn, $images_sql);
+            $images = array();
+            
+            if ($images_result && mysqli_num_rows($images_result) > 0) {
+                while ($image_row = mysqli_fetch_assoc($images_result)) {
+                    $images[] = $image_row;
+                }
+            }
+            $row['images'] = $images;
             $products[] = $row;
         }
     }
@@ -124,7 +152,7 @@ function getAllProducts($conn, $limit = 12) {
 }
 
 /**
- * Search products
+ * Search products with images
  */
 function searchProducts($conn, $search_term) {
     $search_term = mysqli_real_escape_string($conn, $search_term);
@@ -141,6 +169,20 @@ function searchProducts($conn, $search_term) {
     
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+            // Get all images for this product
+            $product_id = $row['id'];
+            $images_sql = "SELECT * FROM product_images 
+                          WHERE product_id = $product_id 
+                          ORDER BY is_primary DESC, sort_order ASC";
+            $images_result = mysqli_query($conn, $images_sql);
+            $images = array();
+            
+            if ($images_result && mysqli_num_rows($images_result) > 0) {
+                while ($image_row = mysqli_fetch_assoc($images_result)) {
+                    $images[] = $image_row;
+                }
+            }
+            $row['images'] = $images;
             $products[] = $row;
         }
     }
@@ -178,6 +220,28 @@ function formatPrice($price, $original_price = null) {
     }
 }
 
-
+// Function to get all product images grouped by product
+function getProductImagesGrouped($conn) {
+    $images = array();
+    
+    $sql = "SELECT pi.*, p.name as product_name 
+            FROM product_images pi
+            LEFT JOIN products p ON pi.product_id = p.id
+            WHERE p.status = 'active'
+            ORDER BY pi.product_id, pi.sort_order, pi.created_at";
+    $result = $conn->query($sql);
+    
+    if ($result && $result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $product_id = $row['product_id'];
+            if (!isset($images[$product_id])) {
+                $images[$product_id] = array();
+            }
+            $images[$product_id][] = $row;
+        }
+    }
+    
+    return $images;
+}
 
 ?>

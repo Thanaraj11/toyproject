@@ -93,17 +93,17 @@ INSERT INTO product_images (product_id, image_url, alt_text, is_primary, sort_or
 (1, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'LEGO Roller Coaster front view', TRUE, 1),
 (1, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'LEGO Roller Coaster side view', FALSE, 2),
 (1, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'LEGO Roller Coaster details', FALSE, 3),
-(2, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Spider-Man figure front', TRUE, 1),
-(2, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Spider-Man figure back', FALSE, 2),
-(3, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Barbie Dreamhouse front', TRUE, 1),
-(3, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Barbie Dreamhouse interior', FALSE, 2),
-(4, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Wooden puzzle set', TRUE, 1),
-(5, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Nerf blaster front', TRUE, 1),
-(6, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'VTech smartwatch', TRUE, 1),
-(7, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Crayola art case', TRUE, 1),
-(8, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Hot Wheels garage', TRUE, 1),
-(9, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'Play-Doh kitchen', TRUE, 1),
-(10, 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=600&fit=crop', 'LOL Surprise house', TRUE, 1);
+(2, 'front\asserts\images\Spider-Man figure front.avif', 'Spider-Man figure front', TRUE, 1),
+(2, 'front\asserts\images\Spider-Man figure back.jpg', 'Spider-Man figure back', FALSE, 2),
+(3, 'front\asserts\images\Barbie Dreamhouse toy interior view.avif', 'Barbie Dreamhouse front', TRUE, 1),
+(3, 'front\asserts\images\Barbie Dreamhouse front.jpg', 'Barbie Dreamhouse interior', FALSE, 2),
+(4, 'front\asserts\images\Wooden puzzle set.avif', 'Wooden puzzle set', TRUE, 1),
+(5, 'front\asserts\images\Nerf blaster front.avif', 'Nerf blaster front', TRUE, 1),
+(6, 'front\asserts\images\VTech smartwatch.jpg', 'VTech smartwatch', TRUE, 1),
+(7, 'front\asserts\images\Crayola art case.avif', 'Crayola art case', TRUE, 1),
+(8, 'front\asserts\images\Hot Wheels garage.avif', 'Hot Wheels garage', TRUE, 1),
+(9, 'front\asserts\images\Play-Doh kitchen.jpg', 'Play-Doh kitchen', TRUE, 1),
+(10, 'front\asserts\images\LOL Surprise house.jpg', 'LOL Surprise house', TRUE, 1);
 
 -- Insert Customers (50 customers)
 INSERT INTO customers (first_name, last_name, email, phone, password_hash, status, avatar_color, email_verified) VALUES 

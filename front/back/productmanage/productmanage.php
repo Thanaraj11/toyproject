@@ -167,6 +167,7 @@ mysqli_close($conn);
                 <form method="GET" action="" class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" name="search" placeholder="Search products..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                    <input type="hidden" name="tab" value="product-list">
                 </form>
                 <div class="user-profile">
                     <div class="user-avatar">A</div>
@@ -294,6 +295,7 @@ mysqli_close($conn);
                     <div class="form-group">
                         <label for="productImage">Product Image</label>
                         <input type="file" id="productImage" name="image" class="form-control" accept="image/*">
+                        <small>Supported formats: JPG, PNG, GIF, WebP (Max 5MB)</small>
                     </div>
                     <div class="form-group">
                         <label for="productStatus">Status</label>
@@ -311,14 +313,14 @@ mysqli_close($conn);
         </div>
 
         <!-- Product List -->
-        <div id="product-list" class="tab-content <?php echo $current_tab == 'product-list' ? 'active' : ''; ?>" style="<?php echo $current_tab == 'product-list' ? '' : 'display: none;'; ?>">
+        <div id="product-list" class="tab-content <?php echo $current_tab == 'product-list' ? 'active' : ''; ?>">
             <!-- Filter Bar -->
             <div class="filter-bar">
                 <form method="GET" action="" class="filter-form">
                     <input type="hidden" name="tab" value="product-list">
                     <div class="filter-group">
                         <label for="category-filter">Category:</label>
-                        <select id="category-filter" name="category" class="filter-select" onchange="this.form.submit()">
+                        <select id="category-filter" name="category" class="filter-select">
                             <option value="all" <?php echo empty($filters['category']) ? 'selected' : ''; ?>>All Categories</option>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?php echo htmlspecialchars($category['slug']); ?>" 
@@ -330,7 +332,7 @@ mysqli_close($conn);
                     </div>
                     <div class="filter-group">
                         <label for="status-filter">Status:</label>
-                        <select id="status-filter" name="status" class="filter-select" onchange="this.form.submit()">
+                        <select id="status-filter" name="status" class="filter-select">
                             <option value="all" <?php echo empty($filters['status']) ? 'selected' : ''; ?>>All Statuses</option>
                             <option value="active" <?php echo isset($filters['status']) && $filters['status'] == 'active' ? 'selected' : ''; ?>>Active</option>
                             <option value="inactive" <?php echo isset($filters['status']) && $filters['status'] == 'inactive' ? 'selected' : ''; ?>>Inactive</option>
@@ -338,18 +340,19 @@ mysqli_close($conn);
                     </div>
                     <div class="filter-group">
                         <label for="stock-filter">Stock Status:</label>
-                        <select id="stock-filter" name="stock_status" class="filter-select" onchange="this.form.submit()">
+                        <select id="stock-filter" name="stock_status" class="filter-select">
                             <option value="all" <?php echo empty($filters['stock_status']) ? 'selected' : ''; ?>>All Stock</option>
                             <option value="in-stock" <?php echo isset($filters['stock_status']) && $filters['stock_status'] == 'in-stock' ? 'selected' : ''; ?>>In Stock</option>
                             <option value="out-of-stock" <?php echo isset($filters['stock_status']) && $filters['stock_status'] == 'out-of-stock' ? 'selected' : ''; ?>>Out of Stock</option>
                             <option value="low-stock" <?php echo isset($filters['stock_status']) && $filters['stock_status'] == 'low-stock' ? 'selected' : ''; ?>>Low Stock</option>
                         </select>
                     </div>
-                    <?php if (isset($_GET['category']) || isset($_GET['status']) || isset($_GET['stock_status']) || isset($_GET['search'])): ?>
-                        <div class="filter-group">
+                    <div class="filter-group">
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                        <?php if (isset($_GET['category']) || isset($_GET['status']) || isset($_GET['stock_status']) || isset($_GET['search'])): ?>
                             <a href="?tab=product-list" class="btn btn-secondary">Clear Filters</a>
-                        </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                 </form>
             </div>
 
@@ -386,9 +389,13 @@ mysqli_close($conn);
                             ?>
                                 <tr>
                                     <td>
-                                        <img src="<?php echo htmlspecialchars($product['image_url']); ?>" 
-                                             class="product-image" alt="Product" 
-                                             onerror="this.src='https://via.placeholder.com/50'">
+                                        <?php if (!empty($product['image_url'])): ?>
+                                            <img src="<?php echo htmlspecialchars($product['image_url']); ?>" 
+                                                 class="product-image" alt="Product" 
+                                                 onerror="this.src='https://via.placeholder.com/50'">
+                                        <?php else: ?>
+                                            <img src="https://via.placeholder.com/50" class="product-image" alt="No Image">
+                                        <?php endif; ?>
                                     </td>
                                     <td><?php echo htmlspecialchars($product['name']); ?></td>
                                     <td><?php echo htmlspecialchars($product['sku']); ?></td>
@@ -408,7 +415,7 @@ mysqli_close($conn);
                                         <a href="?edit_product=<?php echo $product['id']; ?>" class="action-btn action-edit">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="?delete_product=<?php echo $product['id']; ?>" class="action-btn action-delete" onclick="return confirm('Are you sure you want to delete this product?')">
+                                        <a href="?delete_product=<?php echo $product['id']; ?>&tab=product-list" class="action-btn action-delete" onclick="return confirm('Are you sure you want to delete this product?')">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
@@ -495,13 +502,13 @@ mysqli_close($conn);
                     </div>
                     <div class="form-group">
                         <label for="editProductImage">Product Image</label>
-                        <?php if ($edit_product['image_url']): ?>
+                        <?php if (!empty($edit_product['image_url'])): ?>
                             <div style="margin-bottom: 10px;">
                                 <img src="<?php echo htmlspecialchars($edit_product['image_url']); ?>" alt="Current Product Image" style="max-width: 100px; max-height: 100px;">
                             </div>
                         <?php endif; ?>
                         <input type="file" id="editProductImage" name="image" class="form-control" accept="image/*">
-                        <small>Leave empty to keep current image</small>
+                        <small>Leave empty to keep current image. Supported formats: JPG, PNG, GIF, WebP (Max 5MB)</small>
                     </div>
                     <div class="form-group">
                         <label for="editProductStatus">Status</label>
@@ -530,36 +537,36 @@ mysqli_close($conn);
             });
             
             // Show selected tab content
-            document.getElementById(tabId).style.display = 'block';
-            document.getElementById(tabId).classList.add('active');
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.style.display = 'block';
+                selectedTab.classList.add('active');
+            }
             
             // Update active tab
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            event.target.classList.add('active');
             
             // Update URL without page reload
             const url = new URL(window.location);
             url.searchParams.set('tab', tabId);
             window.history.pushState({}, '', url);
+            
+            // Scroll to top of tab content
+            window.scrollTo(0, 0);
         }
         
-        // Auto-submit filter form when selections change
+        // Initialize tabs on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const filterSelects = document.querySelectorAll('.filter-select');
-            filterSelects.forEach(select => {
-                select.addEventListener('change', function() {
-                    if (this.form) {
-                        this.form.submit();
-                    }
-                });
-            });
-            
             // Set active tab based on URL parameter
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
-            if (tabParam) {
+            
+            // Default to 'add-product' if no tab specified
+            if (!tabParam) {
+                showTab('add-product');
+            } else {
                 showTab(tabParam);
             }
         });
